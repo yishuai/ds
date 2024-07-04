@@ -1,0 +1,6 @@
+**/video/
+**/.vscode/
+**/bak/
+**/exercise/
+*temp*
+.DS\_Store
