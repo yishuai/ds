@@ -123,8 +123,7 @@ Run
 
 ---
 class: middle, center
-
-# 排列组合方法
+# 排列组合
 
 ---
 # combinations 产生所有组合
@@ -156,7 +155,6 @@ class: middle, center
 
 ---
 class: middle, center
-
 # 常用抽样方法
 
 ---
@@ -270,8 +268,7 @@ scipy stats 的 hypergeom 函数实现
 
 ---
 class: middle, center
-
-# 民调方法有偏差
+# 民调方法偏差
 
 ---
 # 专家事后分析
@@ -328,8 +325,6 @@ class: middle, center
 
 1.5K 抽样人中，三种人的多变量超几何分布
 
-一次抽样
-
       from scipy.stats import multivariate_hypergeom
 
       n = 1_500
@@ -341,9 +336,7 @@ class: middle, center
       array([727, 703, 70])
 
 ---
-# 抽样的变化性（Variation）
-
-二次抽样
+# 无放回抽样
 
       multivariate_hypergeom.rvs(votes, n)
 
@@ -352,7 +345,7 @@ class: middle, center
 每次的抽样结果都不同
 
 ---
-# 仿真 1万次
+# 仿真 1 万次
 
       def trump_advantage(votes, n):
 
@@ -369,25 +362,23 @@ class: middle, center
 平均起来，第一种人，比第二种人 多 0.4818 – 0.4746 = 0.0072，是对的
 
 ---
-# 但在很多次抽样中第二种人多
+# 仿真结果
 
 .center[.width-100[![](./fig/9-theory_election_19_0.svg)]]
 
-第一种人多的比例的直方图
+第一种人多的比例的直方图：很多次抽样中第二种人多
 
 ---
-# 第一种人胜出的概率
+# 仿真结果
 
       np.mean(np.array(simulations) > 0)
 
       0.60613
 
-1 万次里，60% 是第一种人多，结果正确
-
-但 40% 中，抽样反映出来的结果是错误的
+1 万次里，60% 是第一种人多，但另外的 40% 中，第二种人多
 
 ---
-# 稍微加一点 bias
+# 加一点 bias
 
 偏差：偏向 第二种人 0.005
 
@@ -402,7 +393,7 @@ class: middle, center
 0.44967
 
 ---
-### bias 的影响
+# 仿真结果
 .center[.width-100[![](./fig/10-theory_election_28_0.svg)]]
 
 .red[第二种人多的情况就多了]
@@ -414,11 +405,10 @@ class: middle, center
 
 效果差不多
 
-.red[增加样本数，不改善 Bias]
+.red[增加次数，不改善 Bias]
 
 ---
 class: middle, center
-
 # 解决办法
 
 ---
@@ -428,12 +418,6 @@ class: middle, center
 - 减少覆盖偏差
   - 不响应的人，有一个 follow up 方法
 - 调试仪器
-
----
-# 小结
-
-- Urn 仿真，揭示了随机抽样的 Variation 和 Bias 的影响
-- 设计实验的时候，要注意
 
 ---
 # 小结
@@ -470,3 +454,6 @@ theory_exercises.ipynb
 - Systematic Sampling
 - Intercept Survey sampling
 - 囚犯回归悖论
+
+ds100 lec9，note9
+      sampling 收集 数据

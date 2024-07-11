@@ -2,20 +2,55 @@ class: middle, center
 # 假设检验
 
 ---
+# 内容
+
+- 假设检验仿真
+- 假设检验原理
+  - p 值
+- 测试类型
+  - 单样本/双样本
+  - 单边/双边
+- 各种测试的原理和选择
+  - t-test
+  - 卡方检验
+  - 非参数检验
+
+---
+class: middle, center
+# 假设检验仿真
+
+---
 # 疫苗有效吗？
 - 43,738 志愿者
 - 随机分配，一半疫苗，一半安慰剂
 - 28天后，43270人没得，468人得了新冠，117 疫苗，351 没疫苗
 - 假设检验
   - 假设：疫苗有效
+  - 比较样本均值与已知总体均值
 
 ---
-# Urn 模型仿真假设检验
+# 仿真原理
 
-NULL 假设：疫苗无效，得不得新冠，概率是一样的
+提出 NULL 假设：疫苗无效，打了疫苗后，得新冠的概率，没有变化
 
-仿真验证：43738个人，468人得了，43270人没得，从中随机采样一半人 21869 人。
-50 万次实验
+如果 NULL 假设成立，那么，在打了疫苗的一半人中，按总体均值，应该是 234 人得
+
+但现在只有 117 人得，似乎比较极端。
+
+统计 117 人得病，以及比它更极端的情况（得的人比 117 人还少）的概率
+
+如果这个概率很小，那么就比较有信息，Reject NULL 假设，也就是说，疫苗很可能有效
+
+---
+# Urn 模型仿真
+
+已知：43738个人，468人得了，43270人没得。
+
+NULL 假设下，疫苗无效，得不得新冠，概率一样
+
+就在这 43738 个人中，随机采样一半打了疫苗的人 21869 人，看其中得病的人数
+
+做 50 万次实验
 
 仿真代码
 
@@ -24,27 +59,23 @@ NULL 假设：疫苗无效，得不得新冠，概率是一样的
             nsample=21869, size=500000)
 
 ---
-# 假设检验
-
-平均应该是 234 人得了，但因为采样的随机性，也有少数的情况，会只有 117 人得，这是我们观察到的情况。
-
-统计“只有 117 人得”这种情况，以及比它更极端的情况，就是得的人，还少于 117 人的情况。
-
-这个概率如果很小，那么：NULL 假设的可能性很小，所以，“疫苗有效”的假设很可能有效
-
----
-# 结果
+# 50 万次实验中得病人数的分布
 
 - .center[.width-80[![](./fig/12-theory_vaccine_efficacy_11_0.svg)]]
-  - 50万次实验中，每次实验中“得了新冠”人数的分布，没有少于 117 人的
-  - 所以，NULL 假设（疫苗无效）成立的概率很小
-  - 所以，疫苗很可能有效
+  - 极少实验中得病人数少于 117 人
+  - 所以，NULL 假设（疫苗无效）成立的概率很小，可拒绝
+  - 疫苗很可能有效
 
 ---
-# 注意
+# 小结
+- 假设检验：用科学方法，比较样本均值与已知总体均值
+  - 样本均值：打了疫苗后，得病的概率
+  - 已知总体均值：所有人的得病概率
+- 通过 Reject NULL 假设，推断原始假设可能成立
 
--  基于一部分数据的观察，建立假设后，要用同一来源的另一部分新数据，检验假设
--  切勿使用相同的数据来提出假设，并对其进行检验
+---
+class: middle, center
+# 假设检验方法
 
 ???
 
@@ -66,30 +97,32 @@ belief)
 - We obtain some data to test our hypothesis
 
 ---
-# 假设检验
+# 两种假设
 
-- 我们对“世界”或某些现象提出先验的 NULL 假设（H0）
-    - 你可以认为这是一些广泛持有的信念
-    - 疫苗无效
-- 然后我们提出一个与 NULL 假设相矛盾的新“替代假设”（H1 或Ha）。
-    - 这是我们有兴趣测试的假设（我们的新信仰）
-    - 疫苗有效
-
----
-# 假设检验
-- 我们不直接测试替代假设 Ha
-- 相反，我们测试空假设 H0
-- 考虑：遵循 NULL 假设时产生的数据，与观察到的一个或多个极端情况的可能性有多大
-- 假设 NULL 假设是正确的，我观察到的现象的可能性有多大？
+- NULL 假设（H0）
+  - 可以认为是一些广泛持有的信念
+  - 对“世界”或某些现象的先验的信念
+  - 疫苗无效
+- “替代假设”（H1 或 Ha）
+  - 与 NULL 假设相矛盾
+  - 我们有兴趣测试的假设
+  - 疫苗有效
 
 ---
-# 假设检验
-- 如果现象在 NULL 假设下显得极不可能
-    - 我们说：NULL 假设似乎没有正确描述这种现象，所以，可以拒绝 NULL 假设
-    - 小心：我们不接受替代假设 Ha 哈
-    - 相反，我们只是说：Ha 可能是正确的
-- 否则
-  - 我们无法拒绝 NULL 假设
+# 假设检验方法
+- 不直接测试替代假设 Ha
+- 而是测试 NULL 假设 H0
+- 评估，当 NULL 假设成立时，观察到的数据及更极端的情况，可能性有多大
+
+---
+# 假设检验方法
+- 如果可能性很小
+  - 我们说：NULL 假设似乎没有正确描述这种现象，所以，可以比较有信心地拒绝 NULL 假设
+  - 然后说，Ha 可能是正确的
+  - 小心：我们不说：我们接受了替代假设 Ha
+  - 我们只是说：它可能是正确的（始终存疑疑虑）
+- 如果可能性很大
+  - 那么，无法拒绝 NULL 假设
   - 小心：我们并不接受 NULL 假设
 
 ???
@@ -118,12 +151,12 @@ are correct in doing so with some probability (confidence)
 rejections
 
 ---
-# 假设检验方法
-1. 从对数据的一些观察开始
+# 小结：假设检验方法
+1. 从一些观察数据开始
 2. 提出一个“研究”（替代）假设 Ha
-3. 针对一个“默认”的 NULL假设 H0 进行测试
-4. 获取新数据来检验 H0 假设
-5. 适当选择统计检验方法，确定数据是否支持 NULL 假设
+3. 针对 Ha，提出一个“默认”的 NULL假设 H0 进行测试
+4. 获取新数据，检验 H0 假设
+5. 选择合适的统计检验方法，确定数据是否支持 NULL 假设
 
 ???
 The hypothesis testing method
@@ -135,12 +168,22 @@ according to the prescribed rules
 5. Using an opportunely chosen statistical test, determine if the data supports the null hypothesis or not
 
 ---
-# 示例
+# 小结：小心我们的表述
+- 我们只是拒绝 NULL 假设，并不是证明它不正确
+  - 只是说：根据数据，它不太可能是正确的
+  - 这个拒绝是有“置信度”的
+- 拒绝 NULL 假设，并不意味着原假设（替代方案）是“正确的”
+  - 只是我们不能排除它！
+  - 不要说：我们“接受”原假设
 
-a,b,c,d 四个选项，随机选择
+---
+# 示例 I
 
-- 基于一段时间的观察，提出 Null 假设 H0：“b”的概率为 80%
-   - X 是二项分布随机变量，参数：12, 0.8
+a,b,c,d 四个选项，随机选择 12 次，统计 b 出现的次数 X
+
+基于一段时间的观察，提出 Null 假设 H0：“b”的概率为 80%
+
+NULL 假设：X 是二项分布随机变量，参数：12, 0.8
 
 ---
 # 假设检验
@@ -153,7 +196,7 @@ a,b,c,d 四个选项，随机选择
 
 b: 4, not b: 8
 
-Null 假设 b 的概率是 0.8，但这个 b 才 4：太少了
+Null 假设 b 的概率是 0.8，但这里 b 才出现 4 次：太少了
 
 更极端的情况：b 的数目比 4 更少
 
@@ -162,12 +205,14 @@ Null 假设 b 的概率是 0.8，但这个 b 才 4：太少了
 
 计算 NULL 假设下，b 只有 4 个或者更少（更极端的情况）的概率：
 
-P(X ≤ 4) < 0.0006! 非常不可能
+P(X ≤ 4) < 0.0006! 
+
+非常不可能
 
 所以，倾向于 reject 这个 NULL 假设
 
 ---
-# 假设检验
+# 示例 II
 
 如果收集到的新数据是 
 
@@ -186,33 +231,27 @@ P(X ≤ 10) < 0.73! 还是可能的，所以，
 
 我们没有证据拒绝它
 
-小心：不能说 NULL 假设很可能是正确的！
-
 ???
 
 Brown 假设检验 PPT 2：https://static.us.edusercontent.com/files/14HfwdTegHr7oGqhZmqWqaPi
 
 ---
-# 统计测试
+# p 值
 
-- P(X ≤ n) 是一种统计测试
+- P(X ≤ n) 是测量现象及比它更极端的现象，在 NULL 假设下出现的概率
     - P(X ≤ 4) < 0.0006
     - P(X ≤ 10) < 0.73
-- 为我们提供了一种方法，来衡量数据“支持我们的假设”的程度
-
----
-# p 值
-- 0.0006，0.73 表示“实验数据以及比它更极端的情况”在 NULL 假设下出现的概率
-- 这个概率越小，我们 Reject NULL 假设的“信心”就越大
-  - 设置一个判决门限，比如 0.05
-  - 小于这个门限，就 Reject NULL 假设
+- 衡量了测量数据“支持 NULL 假设”的程度
+- 它越小，支持程度就越小，我们 Reject NULL 假设的“信心”就越大
 
 ---
 # 判决门限
 
-- 0.05
-- 我们人为设置的一个标准，决定假设何时可以被拒绝
-- 它代表了：决定拒绝 NULL 假设时，观察到的数据应该“多么令人惊讶”（即，多么不可能）
+- 设置根据 p 值 Reject NULL 假设的判决门限
+- 比如 0.05
+- 小于这个门限，就 Reject NULL 假设
+- 是我们人为设置的，决定何时拒绝 NULL 假设
+- 它代表了：要拒绝 NULL 假设，观察到的数据应该“多么令人惊讶”（即，多么不可能）
 - 表示决策的置信度
 
 ???
@@ -253,46 +292,187 @@ The blueprint
 - If the threshold is used to state the level of confidence which whom we want to decide on rejection
 
 ---
-# 统计检验方法
+# 判决门限
+
+- 显着性水平
+  - Level of significance a
+  - 许多术语：临界水平/控制水平/临界阈值...
+- 拒绝区域
+  - p 值 < a
+- 限制做出错误决定的可能性
+- 反映了我们想有多确定
+- 示例：a = 0.05
+  - 5% 的情况下我们会偶然拒绝正确的 NULL 假设
+
+???
+Level of significance a
+
+How certain do you want to be?
+- Many terminologies: Critical level/control level/critical threshold...
+- Example: Significance level of 0.05
+- 5% of the time we will observe higher mean by chance
+- 95% of the time the higher mean will be real
+- a bounds the likelihood of making wrong decisions
+- 5% of the time we will reject a correct null by chance
+
+We use a to determinate the rejection region
+- All the values whose likelihood of being observed is < a
+- X is within the rejection region
+
+---
+# 基于 p 值的假设检验方法
 
 - 分析 NULL 假设，设计实验
   - 选择合适的假设测试
   - 确定统计量，确定该统计量的先验统计分布
 - 获取数据
-- 计算在 NULL 假设下，观察数据出现的概率
-- 将该概率与 p 值比较，决定是否可以拒绝 NULL 假设
+- 计算在 NULL 假设下，观察数据及比它更极端的情况，出现的概率
+  - 即 p 值
+- 将 p 值与判决门限比较，决定是否可以拒绝 NULL 假设
 
 ---
-# 小心我们的表述
-- 我们只是拒绝 NULL 假设，并不是证明它不正确
-  - 我们只是说，根据数据，不太可能是正确的
-- 拒绝 NULL 假设 并不意味着原假设（替代方案）是“正确的”
-  - 只是我们不能排除它！
-  - 不要说：我们“接受”原假设
-- 我们的拒绝是有“置信度”的
+# 课堂练习：概念选择题 I
+
+运行一个测试，获得 p 值 p = 0.05。
+
+这意味着原假设有 5% 的机会为真
+- a) 同意
+- b) 不同意
+- c) 不确定
+
+???
+We run a test and we obtain a p-value p=0.05.
+This means that the null hypothesis has a 5% chance of being true
+a) Agree
+b) Disagree
+c) Cannot say
+
+---
+# 课堂练习：概念选择题 II
+
+我们运行一个测试，获得 p 值 p=0.05。
+
+此时，如果我们拒绝 NULL 假设，则该决策是错误的概率（Null 其实为真）最多为 5%
+
+- a) 同意
+- b) 不同意
+- c) 不确定
+
+---
+class: middle, center
+# 假设测试类型
+
+---
+# 单样本 vs 双样本
+- 单样本
+  - 观察结果（样本）来自一个群体
+  - 想将它们与特定模型或分布进行比较
+  - 例如，此分布的均值为 0.5
+- 双样本
+  - 观察结果（样本）来自两个群体
+  - 希望比较两个群体的统计特性
+  - 例如，这两个分布是相同的，有相同的均值
+- 许多重要的测试都有这两种版本
 
 ---
 # 示例：测试硬币的公平性
 - H1：“这枚硬币有偏见”
 - H0：“这枚硬币是公平的”
 
+单样本测试
+
+???
+
+One sample vs two samples test
+- One sample tests:
+- We have observations (samples) from one population, we
+want to compare them with a fixed model or distribution
+- E.g., this distribution as mean �
+- Two samples tests:
+- We have observations (samples) from two populations
+- We want to compare statistical properties of the two
+populations through the observations
+- E.g., these two distributions are the same, they have the
+same average, ....
+
+Many important test have both versions
+
 ---
-# 测试过程
-- 独立抛一枚硬币 20 次，每次分布相同
+# 双边 vs 单边
+
+- 计算 H0 下，比观察情况更极端（≤ 或 ≥）情况时，有两种计算方法
+- 双边（two tail）
+  - 两头都极端
+- 单边（one tail）
+  - 一头极端
+
+---
+# 双边
+
+- H1：“这枚硬币有偏见”
+- H0：“这枚硬币是公平的”
+
+- 抛 12 次，观察正面的数量 X = 4
+- 假设 NULL 假设是正确的，计算比观察 X 更极端的结果的概率 p
+
+---
+# 双边
+
+- 因为 H0 是“硬币公平”
+- 所以，Head <= 4, Tail <= 4，都是比 X = 4 更极端的情况
+- 所以，包括 P(X ≤ 4)，也包括 P(X ≥ 8)
+- 双边
+
+---
+# 单边
+
+- H1：“这枚硬币偏向背面”
+- H0：“这枚硬币不偏向背面”
+
+- 抛 12 次，观察正面的数量 X = 4
+- 假设 NULL 假设是正确的，计算比观察 X 更极端的结果的概率 p
+
+---
+# 单边
+
+- 因为 H0 是“硬币不偏向背面”
+- 所以，Head <= 4，是比 X = 4 更极端的情况
+- P(X ≥ 8) 不属于这种情况
+- 所以，只包括 P(X ≤ 4)
+- 单边
+
+???
+
+A slightly different question
+H1: “this coin is biased towards tail”
+H0: “this coin is not biased towards tail”
+
+Unidirectional
+Probability of a result at
+least as extreme as X 
+
+只看偏 H
+
+p-value
+- p-value: Probability of obtaining a test statistic more extreme ( ≤ or ≥ ) than the observed sample value given H0 is true
+- Also called observed level of significance
+- Function of the data takes values in [0,1]
+more extreme： ( ≤ or ≥ )
+
+As n → ∞, the p-value p is a random variable
+whose pmf is uniform in [0,1] if the nullhypothesis is correct
+- Assume we set a = 0.05:
+- Pr p ≤ 0.05 = 0.05!
+
+---
+# 小结：单边测试过程
+- 独立抛一枚硬币 12 次，每次独立同分布
 - 统计出现正面的数量 X
   - “检验统计量” = 4
-- 假设 NULL 假设是正确的，计算观察到至少与 X 一样极端的结果的概率 p
+- 假设 NULL 假设（硬币不偏向背面）是正确的，计算观察到 X 个正面，或者更少正面的概率
   - p 值
 - 设置阈值 0 ≤ a ≤ 1，如果 p ≤ a，则拒绝 NULL 假设
   - a：所需的置信水平
-
----
-# 注意
-
-获取数据之前需要确定测试程序，包括：
-- 样本数量
-- 统计测试类型
-- 阈值
 
 ???
 
@@ -330,128 +510,181 @@ The testing procedure, including the number of samples, type of statistical
 test and threshold need to be fixed before obtaining the data!!
 
 ---
-# 显着性水平
-
-- 门限 a
-  - Level of significance a
-  - 许多术语：临界水平/控制水平/临界阈值...
-- 拒绝区域
-  - p 值 < a
-- 限制做出错误决定的可能性
-- 反映了我们想有多确定？
-- 示例：a = 0.05
-  - 5% 的情况下我们会偶然拒绝正确的 NULL 假设
-
-???
-Level of significance a
-
-How certain do you want to be?
-- Many terminologies: Critical level/control level/critical threshold...
-- Example: Significance level of 0.05
-- 5% of the time we will observe higher mean by chance
-- 95% of the time the higher mean will be real
-- a bounds the likelihood of making wrong decisions
-- 5% of the time we will reject a correct null by chance
-
-We use a to determinate the rejection region
-- All the values whose likelihood of being observed is < a
-- X is within the rejection region
-
----
-# p 值
-
-- 在 H0 下，获得比观察到的样本值更极端（≤ 或 ≥）的检验统计量的概率
-- 也称为“观察到的显着性水平”
-- 两种 p 值
-  - 单边测试（one tail）
-  - 双边测试（two tail）
-
----
-# 双边测试
-
-- H1：“这枚硬币有偏见”
-- H0：“这枚硬币是公平的”
-
-- 出现正面的“检验统计量” = 4
-- 假设 NULL 假设是正确的，计算观察到至少与 X 一样极端的结果的概率 p
-  - p 值
-  - 双边测试：两边都极端 H <= 4, T <= 4
-
----
-# 单边测试
-
-- H1：“这枚硬币偏向尾部”
-- H0：“这枚硬币不偏向尾部”
-
-- 出现正面的“检验统计量” = 4
-- 假设 NULL 假设是正确的，计算观察到至少与 X 一样极端的结果的概率 p
-  - p 值
-  - 单边测试：H <= 4 是极端的
-
-???
-
-A slightly different question
-H1: “this coin is biased towards tail”
-H0: “this coin is not biased towards tail”
-
-Unidirectional
-Probability of a result at
-least as extreme as X 
-
-只看偏 H
-
-p-value
-- p-value: Probability of obtaining a test statistic more extreme ( ≤ or ≥ ) than the observed sample value given H0 is true
-- Also called observed level of significance
-- Function of the data takes values in [0,1]
-more extreme： ( ≤ or ≥ )
-
-As n → ∞, the p-value p is a random variable
-whose pmf is uniform in [0,1] if the nullhypothesis is correct
-- Assume we set a = 0.05:
-- Pr p ≤ 0.05 = 0.05!
-
----
-# 单样本 vs 双样本测试
-- 单样本测试
-  - 有来自一个群体的观察结果（样本）
-  - 想将它们与固定模型或分布进行比较
-  - 例如，此分布的均值为 0.5
-- 双样品测试
-  - 有来自两个群体的观察结果（样本）
-  - 希望通过观察来比较两个群体的统计特性
-  - 例如，这两个分布是相同的，它们相同的均值
-- 许多重要的测试都有这两种版本
-
-???
-
-One sample vs two samples test
-- One sample tests:
-- We have observations (samples) from one population, we
-want to compare them with a fixed model or distribution
-- E.g., this distribution as mean �
-- Two samples tests:
-- We have observations (samples) from two populations
-- We want to compare statistical properties of the two
-populations through the observations
-- E.g., these two distributions are the same, they have the
-same average, ....
-
-Many important test have both versions
+class: middle, center
+# 选择合适的测试
 
 ---
 # 选择合适的测试
 
-- 有点像根据下面的成分找到正确的菜谱
-  - 假设类型
-  - 数据类型
-  - 样本量
-  - 方差已知？几个组的方差相等吗？
+获取数据之前，确定测试程序，包括：
+- 样本数量
+- 统计测试类型
+- 阈值
+
+---
+# 考虑因素
+
+- 假设类型
+  - 单样本/双样本、单边/双边
+- 数据类型
+  - 连续/离散
+- 样本量
+  - 少量（少于 30 个）还是比较多
+  - 多的话，因为中心极限定理，可以用高斯分布
+- 方差已知？几个组的方差相等吗？
+  - 有的测试需要知道 Population 方差
+
+---
+class: middle, center
+# t-test
+
+测试数据连续
+
+---
+# t-test 
+
+- 测试数据连续
+- 单样本
+  - Ha = Mean age is not 35
+  - H0 = Mean age is 35
+- 双边
+
+---
+# t-test
+
+- 测量新数据
+    - n：数据点数
+- 计算测试统计 t
+  - t 符合 t 分布
+- 计算观察情况以及更极端的情况的似然率：p-value
+    - 查表法
+    - 注意单边、双边
+- 看 p 是不是小于门限 a
+    - 小于，就说明概率小，可以 reject H0
+
+---
+# t-test
+
+- 方法 2
+- 根据设定的 a 查表，得到对应的 p 值的门限
+  - 因为是双边，就查 a/2
+- 看算出来的 t 是不是大于这个门限
+  - 大于，就说明确实很极端，可以 reject H0
+
+---
+# 单边
+
+Ha = “the average age is less than 35”
+
+类似上面的过程，但要查单边的
+
+---
+# 两样本 t-test
+
+- 均值差异
+  - 使用两样本的 t-test 来比较两个不同群体的样本集合的均值
+- 例
+  - 男人比女人高吗？
+  - 男人比女人买东西更多吗？
+- 假设样本独立
+
+???
+t-test: difference of means; is the average value of some feature different between two populations
+- e.g., Are men taller than women? 
+- Are blue states more populated than red states? 
+- Do CS students work harder than other majors?
+
+---
+# 两样本 t-test
+- 计算每个群体测量数据的实验方差
+- 计算合并方差
+- 计算检验统计量 t
+- 自由度：(n − 1 + m) − 1
+- 使用表格计算 p 值
+- 将 p 值与设定的置信度 a 进行比较
+
+---
+# t-test 小结
+
+- 使用样本标准差来估计总体标准差，并根据 t 分布进行检验
+- t 分布与标准正态分布类似，但在自由度较小时具有更厚的尾部
+- 随着自由度增加，t 分布逐渐逼近标准正态分布
+- 适用于样本量较小（通常小于30）的情况，或总体标准差未知的情况
+
+---
+# z-test
+- 基于标准正态分布（均值为0，标准差为1）
+- 适用于样本量较大（通常大于 30）的情况
+- 当样本量较大时，根据中心极限定理，样本均值的分布接近正态分布
+- 需要已知总体标准差
+
+---
+# 各种检验类型
+
+- 单样本 t 检验（比较样本均值与已知总体均值）
+- 独立样本 t 检验（比较两个独立样本的均值）
+  - 例：比较两种不同教学方法对学生考试成绩的影响
+  - 一个组使用方法 A，另一个组使用方法 B
+  - 两组学生之间没有配对关系。
+- 配对样本 t 检验（比较成对样本的均值）
+  - 比较同一组学生在使用教学方法 A 前后的考试成绩
+  - 每个学生都有两个成绩：一个是使用方法 A 之前的成绩，另一个是使用方法 A 之后的成绩。
+
+---
+class: middle, center
+# 卡方检验
+
+测试数据离散
+
+---
+# 卡方 $X^2$ 检验
+
+- 测试数据离散
+- 例
+  - 喜欢的音乐类型
+  - 学生专业
+
+---
+# 卡方 $X^2$ 检验
+
+- 离散测试数据的取值均匀分布？
+  - 本社区在各种音乐的偏好方面，是否存在差异？
+- 两个离散测试数据的分布相同？
+  - 两个大学专业的学生，人口特征分布是否不同？
+- 注
+  - 两个连续变量的分布是否相同，使用 Kolmogorov-Smirnoff 检验
+
+???
+chi-squared X^2-test: 
+
+difference in frequencies of a categorical variable; is the distribution of some feature uniform across groups
+- Used to compare distributions of discrete random variables: for continuous ones is better to use Kolmogorov-Smirnoff test
+
+- e.g. Do neighborhoods differ in terms of music preferences? 
+- Do college majors differ in terms of sociodemographic features?
+
+---
+# 示例：离散取值分布均匀
+
+多选题，四个选项的概率分布是均匀的？
+
+H0 = all answers are equally likely
+
+Chi Squared Test
+
+发音：kaɪ skwɛrd
+
+???
+X2 test statistic
+
+Pearson showed that z’s distribution converges to X2 distribution as n → ∞
+
+Degrees of freedom are the values that the discrete distribution being observed can assume +1
 
 ---
 # 选择合适的测试
 
-- 好消息：有很多表可用，例如
+有很多表可用
 - UCLA ATS 统计测试选择表，R, SAS, Stata, SPSS 示例，[网页](http://www.ats.ucla.edu/stat/mult_pkg/whatstat/default.htm)
 - PSU 统计测试总结表，[PDF](http://sites.stat.psu.edu/~ajw13/stat500_su_res/notes/lesson14/images/summary_table.pdf)
 - How to select appropriate statistical test? [PDF](https://www.tnstate.edu/eduadmin/Statistics.pdf)
@@ -469,199 +702,52 @@ these ingredients:
 - http://sites.stat.psu.edu/~ajw13/stat500_su_res/notes/lesson14/images/summary_table.pdf
 
 ---
-# t-test
-
-- 均值差异
-  - 两个群体某些特征的不同的均值
-- 例如
-  - 男人比女人高吗？
-  - 电信学生比其他专业的学生努力吗？
-
-???
-t-test: difference of means; is the average value of some feature different between two populations
-- e.g., Are men taller than women? 
-- Are blue states more populated than red states? 
-- Do CS students work harder than other majors?
+class: middle, center
+# 非参数检验
 
 ---
-# t-test 
-
-- Ha = Mean age is not 35
-- H0 = Mean age is 35
-
-- 单样本测试
-- 双边测试
+# 非参数检验
+- 数据很小，不接近正态分布，怎么办？
+  - 样本量非常小，无法测试正态性
+  - 可以基于我们对数据的理解，来设置
+- 当无法安全地设置正态性时，可以用不假设正态性的非参数检验
 
 ---
-# 假设检验
-
-- 测量新数据
-    - n：数据点数
-- 计算测试统计 z
-  - z 符合参数为 0,1 的正态分布
-- 计算观察到至少像它这样，以及更极端的情况的似然率：p-value
-    - 查表法
-    - 双边
-- 看 p 是不是小于门限 a
-    - 小于，就说明确实很极端，可以 reject H0
-
----
-# 假设检验
-
-- 方法 2
-- 根据设定的 a，查表，得到对应的 p
-    - 因为是双边，就查 a/2
-- 看 z 是不是大于这个 p
-    - 大于，就说明确实很极端，可以 reject H0
-
----
-# 单边（one tail）
-
-Ha = “the average age is less than 35”
-
-类似上面的过程，但要查单边的
-
----
-# 两样本 t 检验
-- 使用两样本的 t-test 来比较两个观察群体的平均值
-- 观察从每个群体中抽取的样本集合
-- 假设样本独立
-- 假设两个群体中的值呈正态分布
-- 甚至可以用于具有不同方差的群体
-
----
-# 计算每个群体测量数据的实验方差
-- 计算合并方差
-- 检验统计量 t
-- 自由度：(n − 1 + m) − 1
-- 使用表格计算 p 值
-- 将 p 值与设定的置信度 a 进行比较
-
----
-# 非参数测试
-- 如果数据很小，不接近正态分布怎么办？
-  - 如果样本量非常小，可能无法测试正态性
-  - 可以基于您对数据的理解
-- 当无法安全地假设正态性时，用不假设正态性的非参数检验
-
----
-# 非参数测试
+# 非参数检验
 - 非参数检验非常稳健
   - 无论数据分布如何都可以使用
-  - 不依赖于正态分布或 CLT 的假设
+  - 不依赖于正态分布或中心极限定理（CLT）假设
 - 这非常有用，因为在实践中我们很难检查这些假设的正确性
-- 但当然，没有什么是完美的：检测能力有限
+- 但当然，没有什么是完美的
+  - 检测能力有限
 
 ---
-# 主要思想
+# 非参数检验的思想
 - “我观察到的结果是随机噪声的结果，还是代表统计上显着的现象？”
 - “假设 NULL 假设为真，观察到的结果至少与数据一样极端的可能性有多大？”
-
----
-# 排列测试（Permutation）
-
-- 为数据添加一些随机性
-- 然后评估扰乱后数据的测试统计量
+- 为数据添加随机性，然后评估扰乱后数据的测试统计量
 - 评估观察数据在随机后的数据中的极端程度
 - 如果很奇特（例如，在 5% 中），那么它很可能不仅是由于偶然性
 - 拒绝 NULL 假设
 
 ---
-# 非参数测试
+# 各种非参数检验
+- Permutation Test
 - The Rank-Sum Test (Mann-Whitney U test)
 - Wilcoxon Signed-Rank Test for Paired Data
 
 ---
-# 卡方 $X^2$ 检验
+# 小结
 
-- 检验离散变量
-- 一个离散变量的取值的频率差异
-  - 离散取值均匀分布
-  - 本社区在各种音乐的偏好方面，是否存在差异？
-- 比较两个离散随机变量的分布
-  - 两个大学专业的学生，人口特征分布是否不同？
-  - 对两个连续变量，最好使用 Kolmogorov-Smirnoff 检验
-
-???
-chi-squared X^2-test: 
-
-difference in frequencies of a categorical variable; is the distribution of some feature uniform across groups
-- Used to compare distributions of discrete random variables: for continuous ones is better to use Kolmogorov-Smirnoff test
-
-- e.g. Do neighborhoods differ in terms of music preferences? 
-- Do college majors differ in terms of sociodemographic features?
-
----
-# 离散变量取值分布
-
-多选题的四个选项的概率分布
-
-H0 = all answers are equally likely
-
-Chi Squared Test
-
-???
-X2 test statistic
-
-Pearson showed that z’s distribution converges to X2 distribution as n → ∞
-
-Degrees of freedom are the values that the discrete distribution being observed can assume +1
-
----
-# 课堂练习
-
-- 假设检验
-  - 你心仪职位的职责中，有没有需要做单样本和双样本假设检验的？请各举一个例子
-  - 说明你举的例子，是 one tail，还是 two tail
-  - 请选择合适的统计测试，如 t-text、Chi Squared test，并说明测试过程
-
-???
-Brown 假设检验 PPT 3
-
-Multiple Hypotheses Testing
-
-https://static.us.edusercontent.com/files/j6D0olYYsQJRCT5Wtl74KZrf
-
-- Problems with hypothesis testing
-- p-hacking
-- Publication Bias
-- Multiple hypothesis testing
-- Family Wise Error Rate
-- False Discovery Rate
-
-P-Values
-
-It is NOT the probability that the null or the alternative hypothesis are correct or incorrect 
-
-Probability of observing an effect equal to or more extreme than the one observed, assuming the null hypothesis is true
-
----
-# 课堂测试
-
-运行一个测试，获得 p 值 p = 0.05。
-
-这意味着原假设有 5% 的机会为真
-- a) 同意
-- b) 不同意
-- c) 不确定
-
-???
-We run a test and we obtain a p-value p=0.05.
-This means that the null hypothesis has a 5% chance of being true
-a) Agree
-b) Disagree
-c) Cannot say
-
----
-# 课堂测试
-
-我们运行一个测试，获得 p 值 p=0.05。
-
-此时，如果我们拒绝 NULL 假设，则该决策是错误的概率（Null 其实为真）最多为 5%
-
-- a) 同意
-- b) 不同意
-- c) 不确定
+- 假设检验仿真
+- 假设检验原理
+  - p 值
+- 测试类型
+  - 单样本/双样本，单边/双边
+- 选择合适的测试
+  - t-test/z-test
+  - 卡方检验
+  - 非参数检验
 
 ???
 We run a test and we obtain a p-value p=0.05.
@@ -777,40 +863,76 @@ How to select appropriate statistical test?
     https://www.tnstate.edu/eduadmin/Statistics.pdf
 
 ---
-# 课堂编程
-
-Brown CS1951a Lab 3：Stats
-
-文件：hypo-test.ipynb
+class: middle, center
+# AI 编程
 
 ---
-# 课堂编程
+# 数据代码上传
 
-两部分内容：
-1. 基于好莱坞电影数据集，介绍 
-   1. z-test
-   2. two samples t-test
-   3. chi-squared test
+https://www.marscode.cn/dashboard
 
-2. 警察逮捕数据，回答关于无家可归的人被捕时是否被区别对待的问题
-  1. 被起诉
-  2. 被抓时的警察人数
+上传 3-Stats-Lab.zip
+
+感谢：Brown CS1951a Lab 3：Stats
+
+---
+# AI 解释
+
+打开：hypo-test.ipynb
+
+选中一个文字 Cell，双击，选中其中感兴趣的文字，点 “Explain”，请 AI 解释
+
+阅读 AI 的解释，并追问
+
+如果觉得 AI 解释太学术，可以输入：谢谢！你说得太学术了。你是一位擅长给小学生讲解统计学知识的大学教授，我是一位小学生，请重新解释。
+
+---
+# AI 帮助
+
+选择内核
+
+选中最开始的代码 Cell
+
+Shift-Enter 执行
+
+如果出现错误，选择该错误，请 AI 解释
+
+如果是缺少 Module，则在 Terminal 输入类似 pip install pandas 的命令，安装需要的包
+
+---
+# 内容讲解
+
+基于好莱坞电影数据集的假设检验
+- 2015 年上映的电影的 Metascore 和全体电影比起来，是否存在显着差异
+  - z-test
+- 2006 和 2016 年上映的电影的“Metascore”的均值，是否存在统计差异
+  - two samples t-test
+- 上映年份和收入过亿的电影数量有关系
+  - chi-squared test
+
+---
+# 课堂作业
+
+基于警察逮捕数据的假设检验
+- 和有家的人比起来，无家可归的人被捕后的被起诉，是否存在统计差异
+    - 什么测试？
+- 被抓时的警察人数，是否存在统计差异
+    - 什么测试？
 
 ---
 # 作业
 
 Brown CS1951a HW 4：Regression & Stats， [Webpage](https://cs1951a-summer2021-brown.github.io/assignments/stats/stats-summer2021.html)
 
+文件：hw4-stats.zip，见腾讯会议聊天区
+
 Part 2, 假设检验
 
 数据：大学入学数据，435 名学生
 
 ---
-# 作业
+# 作业 I：常用检验方法实现
 
-两个工作：
-
-1. 实现
 - t-test
   - one sample
   - two sample
@@ -820,8 +942,52 @@ Part 2, 假设检验
 文件：stats_tests.py
 
 ---
-# 作业
+# 作业 II：选择合适的测试
 
-2. 针对 5 种不同的场景，选择合适的假设检验方法
+针对 5 种不同的场景，选择合适的假设检验方法
 
 文件：run_tests.py
+
+---
+# 作业 III：职场练习
+
+- 你心仪职位的职责中，有没有需要做单样本/双样本假设检验的？请各举一个例子
+- 单边/双边，各举一个例子
+- 为上述例子，选择合适的统计测试，并说明理由，简述各测试的测试过程
+- 提交
+
+注：记得用 AI
+
+???
+Brown 假设检验 PPT 3
+
+Multiple Hypotheses Testing
+
+https://static.us.edusercontent.com/files/j6D0olYYsQJRCT5Wtl74KZrf
+
+- Problems with hypothesis testing
+- p-hacking
+- Publication Bias
+- Multiple hypothesis testing
+- Family Wise Error Rate
+- False Discovery Rate
+
+P-Values
+
+It is NOT the probability that the null or the alternative hypothesis are correct or incorrect 
+
+Probability of observing an effect equal to or more extreme than the one observed, assuming the null hypothesis is true
+
+---
+# 作业 IV：简历撰写
+
+选择一个你在《职场练习》中提出的心仪岗位的假设检验测试，基于上述练习的代码和数据，构造数据，完成假设检验，然后按 STAR 原则，写作 50 字的简历内容。
+
+简历内容需要言简意赅，很有吸引力。具体要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
+
+---
+# 作业提交链接
+
+[【腾讯文档】作业 1：假设检验](https://docs.qq.com/form/page/DT3htVkdTdmROdmlO)
+
+提示：请全程由 AI 辅助
