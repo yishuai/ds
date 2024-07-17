@@ -749,6 +749,122 @@ class: middle, center
   - 卡方检验
   - 非参数检验
 
+---
+class: middle, center
+
+# 课后练习
+
+---
+# 练习 1：Brown CS1951a 练习 1
+
+---
+# 数据代码上传
+
+https://www.marscode.cn/dashboard
+
+上传 3-Stats-Lab.zip
+
+感谢：Brown CS1951a Lab 3：Stats
+
+---
+# AI 解释
+
+打开：hypo-test.ipynb
+
+选中一个文字 Cell，双击，选中其中感兴趣的文字，点 “Explain”，请 AI 解释
+
+阅读 AI 的解释，并追问
+
+如果觉得 AI 解释太学术，可以输入：谢谢！你说得太学术了。你是一位擅长给小学生讲解统计学知识的大学教授，我是一位小学生，请重新解释。
+
+---
+# AI 帮助
+
+选择内核
+
+选中最开始的代码 Cell
+
+Shift-Enter 执行
+
+如果出现错误，选择该错误，请 AI 解释
+
+如果是缺少 Module，则在 Terminal 输入类似 pip install pandas 的命令，安装需要的包
+
+---
+# 假设检验
+
+基于好莱坞电影数据集的假设检验
+- 2015 年上映的电影的 Metascore 和全体电影比起来，是否存在显着差异
+  - z-test
+- 2006 和 2016 年上映的电影的“Metascore”的均值，是否存在统计差异
+  - two samples t-test
+- 上映年份和收入过亿的电影数量有关系
+  - chi-squared test
+
+---
+# 假设检验练习
+
+基于警察逮捕数据的假设检验
+- 和有家的人比起来，无家可归的人被捕后的被起诉，是否存在统计差异
+    - 什么测试？
+- 被抓时的警察人数，是否存在统计差异
+    - 什么测试？
+
+---
+# 练习 2：Brown CS1951 练习 2
+
+Brown CS1951a HW 4：Regression & Stats， [Webpage](https://cs1951a-summer2021-brown.github.io/assignments/stats/stats-summer2021.html)
+
+文件：hw4-stats.zip，见腾讯会议聊天区
+
+Part 2, 假设检验
+
+数据：大学入学数据，435 名学生
+
+---
+# Part I：常用检验方法实现
+
+- t-test
+  - one sample
+  - two sample
+  - paired
+- chi-sqare 独立性测试
+
+文件：stats_tests.py
+
+---
+# Part II：选择合适的测试
+
+针对 5 种不同的场景，选择合适的假设检验方法
+
+文件：run_tests.py
+
+---
+class: middle, center
+
+# 作业
+
+---
+# 作业 I：职场练习
+
+- 你心仪职位的职责中，有没有需要做单样本/双样本假设检验的？请各举一个例子
+- 单边/双边，各举一个例子
+- 为上述例子，选择合适的统计测试，并说明理由，简述各测试的测试过程
+
+---
+# 作业 II：简历撰写
+
+选择一个你在《职场练习》中提出的心仪岗位的假设检验测试，基于上述练习的代码和数据，构造数据，完成假设检验，然后按 STAR 原则，写作 50 字的简历内容。
+
+简历内容需要言简意赅，很有吸引力。具体要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
+
+---
+# 作业提交链接
+
+[【腾讯文档】作业 1：假设检验](https://docs.qq.com/form/page/DT3htVkdTdmROdmlO)
+
+提示：请全程由 AI 辅助
+
 ???
 We run a test and we obtain a p-value p=0.05.
 
@@ -862,102 +978,6 @@ How to select appropriate statistical test?
 
     https://www.tnstate.edu/eduadmin/Statistics.pdf
 
----
-class: middle, center
-# AI 编程
-
----
-# 数据代码上传
-
-https://www.marscode.cn/dashboard
-
-上传 3-Stats-Lab.zip
-
-感谢：Brown CS1951a Lab 3：Stats
-
----
-# AI 解释
-
-打开：hypo-test.ipynb
-
-选中一个文字 Cell，双击，选中其中感兴趣的文字，点 “Explain”，请 AI 解释
-
-阅读 AI 的解释，并追问
-
-如果觉得 AI 解释太学术，可以输入：谢谢！你说得太学术了。你是一位擅长给小学生讲解统计学知识的大学教授，我是一位小学生，请重新解释。
-
----
-# AI 帮助
-
-选择内核
-
-选中最开始的代码 Cell
-
-Shift-Enter 执行
-
-如果出现错误，选择该错误，请 AI 解释
-
-如果是缺少 Module，则在 Terminal 输入类似 pip install pandas 的命令，安装需要的包
-
----
-# 内容讲解
-
-基于好莱坞电影数据集的假设检验
-- 2015 年上映的电影的 Metascore 和全体电影比起来，是否存在显着差异
-  - z-test
-- 2006 和 2016 年上映的电影的“Metascore”的均值，是否存在统计差异
-  - two samples t-test
-- 上映年份和收入过亿的电影数量有关系
-  - chi-squared test
-
----
-# 课堂作业
-
-基于警察逮捕数据的假设检验
-- 和有家的人比起来，无家可归的人被捕后的被起诉，是否存在统计差异
-    - 什么测试？
-- 被抓时的警察人数，是否存在统计差异
-    - 什么测试？
-
----
-# 作业
-
-Brown CS1951a HW 4：Regression & Stats， [Webpage](https://cs1951a-summer2021-brown.github.io/assignments/stats/stats-summer2021.html)
-
-文件：hw4-stats.zip，见腾讯会议聊天区
-
-Part 2, 假设检验
-
-数据：大学入学数据，435 名学生
-
----
-# 作业 I：常用检验方法实现
-
-- t-test
-  - one sample
-  - two sample
-  - paired
-- chi-sqare 独立性测试
-
-文件：stats_tests.py
-
----
-# 作业 II：选择合适的测试
-
-针对 5 种不同的场景，选择合适的假设检验方法
-
-文件：run_tests.py
-
----
-# 作业 III：职场练习
-
-- 你心仪职位的职责中，有没有需要做单样本/双样本假设检验的？请各举一个例子
-- 单边/双边，各举一个例子
-- 为上述例子，选择合适的统计测试，并说明理由，简述各测试的测试过程
-- 提交
-
-注：记得用 AI
-
 ???
 Brown 假设检验 PPT 3
 
@@ -977,17 +997,3 @@ P-Values
 It is NOT the probability that the null or the alternative hypothesis are correct or incorrect 
 
 Probability of observing an effect equal to or more extreme than the one observed, assuming the null hypothesis is true
-
----
-# 作业 IV：简历撰写
-
-选择一个你在《职场练习》中提出的心仪岗位的假设检验测试，基于上述练习的代码和数据，构造数据，完成假设检验，然后按 STAR 原则，写作 50 字的简历内容。
-
-简历内容需要言简意赅，很有吸引力。具体要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
-
----
-# 作业提交链接
-
-[【腾讯文档】作业 1：假设检验](https://docs.qq.com/form/page/DT3htVkdTdmROdmlO)
-
-提示：请全程由 AI 辅助

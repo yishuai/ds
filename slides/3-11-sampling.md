@@ -436,24 +436,29 @@ class: middle, center
   - 你心仪职位的职责中，有没有需要做民调的？请举一个例子，然后分析可能会产生偏差的原因，最后设计调查方法，减少偏差
 
 ???
+class: middle, center
 
-代码
+课后练习
 
-https://github.com/DS-100/textbook/tree/master/content/ch/03
+DS100 课本附属练习
 
-课上演示
+访问 https://github.com/DS-100/textbook/tree/master/content/ch/03 目录下的 Jupyter Notebook
+
+复习课上演示过的 Jupyter Notebook
 - theory_urn.ipynb
 - theory_sampling_variation.ipynb
 - theory_election.ipynb
 - theory_random_assignment.ipynb
 - theory_measurement_error.ipynb
 
-作业
-theory_exercises.ipynb
+DS100 课本附属练习
+
+完成作业 theory_exercises.ipynb
 - Cluster Sampling
 - Systematic Sampling
 - Intercept Survey sampling
 - 囚犯回归悖论
 
+???
 ds100 lec9，note9
       sampling 收集 数据
