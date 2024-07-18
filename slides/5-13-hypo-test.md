@@ -335,7 +335,7 @@ We use a to determinate the rejection region
 
 运行一个测试，获得 p 值 p = 0.05。
 
-这意味着原假设有 5% 的机会为真
+这意味着 NULL 假设有 5% 的可能为真
 - a) 同意
 - b) 不同意
 - c) 不确定
@@ -647,10 +647,9 @@ class: middle, center
 ---
 # 卡方 $X^2$ 检验
 
-- 离散测试数据的取值均匀分布？
-  - 本社区在各种音乐的偏好方面，是否存在差异？
-- 两个离散测试数据的分布相同？
-  - 两个大学专业的学生，人口特征分布是否不同？
+- 离散数据的分布
+  - 不同群体在各种音乐的偏好方面，是否存在差异？
+  - 两个大学专业的学生，男女生分布是否不同？
 - 注
   - 两个连续变量的分布是否相同，使用 Kolmogorov-Smirnoff 检验
 
@@ -685,9 +684,9 @@ Degrees of freedom are the values that the discrete distribution being observed 
 # 选择合适的测试
 
 有很多表可用
-- UCLA ATS 统计测试选择表，R, SAS, Stata, SPSS 示例，[网页](http://www.ats.ucla.edu/stat/mult_pkg/whatstat/default.htm)
-- PSU 统计测试总结表，[PDF](http://sites.stat.psu.edu/~ajw13/stat500_su_res/notes/lesson14/images/summary_table.pdf)
-- How to select appropriate statistical test? [PDF](https://www.tnstate.edu/eduadmin/Statistics.pdf)
+- UCLA ATS 统计测试选择表，R, SAS, Stata, SPSS 示例，[网页](https://stats.oarc.ucla.edu/other/mult-pkg/whatstat/)
+- PSU 统计测试总结表，[PDF](https://online.stat.psu.edu/stat500/sites/stat500/files/500%20L12-Table%20of%20Statistical%20Techniques.pdf)
+<!-- - How to select appropriate statistical test? [PDF](https://www.tnstate.edu/eduadmin/Statistics.pdf) -->
 
 ???
 Select your test
@@ -757,17 +756,16 @@ class: middle, center
 ---
 # 练习 1：Brown CS1951a 练习 1
 
----
-# 数据代码上传
+数据代码上传
 
 https://www.marscode.cn/dashboard
 
-上传 3-Stats-Lab.zip
+上传 [3-Stats-Lab.zip](../zip/3-Stats-Lab.zip)
 
 感谢：Brown CS1951a Lab 3：Stats
 
 ---
-# AI 解释
+# 练习
 
 打开：hypo-test.ipynb
 
@@ -778,7 +776,7 @@ https://www.marscode.cn/dashboard
 如果觉得 AI 解释太学术，可以输入：谢谢！你说得太学术了。你是一位擅长给小学生讲解统计学知识的大学教授，我是一位小学生，请重新解释。
 
 ---
-# AI 帮助
+# 练习
 
 选择内核
 
@@ -815,7 +813,7 @@ Shift-Enter 执行
 
 Brown CS1951a HW 4：Regression & Stats， [Webpage](https://cs1951a-summer2021-brown.github.io/assignments/stats/stats-summer2021.html)
 
-文件：hw4-stats.zip，见腾讯会议聊天区
+文件：[hw4-stats.zip](../zip/hw4-stats.zip)
 
 Part 2, 假设检验
 
@@ -861,7 +859,7 @@ class: middle, center
 ---
 # 作业提交链接
 
-[【腾讯文档】作业 1：假设检验](https://docs.qq.com/form/page/DT3htVkdTdmROdmlO)
+[【腾讯文档】作业：假设检验](https://docs.qq.com/form/page/DT3htVkdTdmROdmlO)
 
 提示：请全程由 AI 辅助
 
@@ -997,3 +995,24 @@ P-Values
 It is NOT the probability that the null or the alternative hypothesis are correct or incorrect 
 
 Probability of observing an effect equal to or more extreme than the one observed, assuming the null hypothesis is true
+
+
+PSU STAT 500: Applied Statistics.
+
+https://online.stat.psu.edu/stat500/
+
+
+ Lesson 0: Overview
+ Lesson 1: Collecting and Summarizing Data
+ Lesson 2: Probability
+ Lesson 3: Probability Distributions
+ Lesson 4: Sampling Distributions
+ Lesson 5: Confidence Intervals
+ Lesson 6a: Hypothesis Testing for One-Sample Proportion
+ Lesson 6b: Hypothesis Testing for One-Sample Mean
+ Lesson 7: Comparing Two Population Parameters
+ Lesson 8: Chi-Square Test for Independence
+ Lesson 9: Linear Regression Foundations
+ Lesson 10: Introduction to ANOVA
+ Lesson 11: Introduction to Nonparametric Tests and Bootstrap
+ Lesson 12: Summary and Review

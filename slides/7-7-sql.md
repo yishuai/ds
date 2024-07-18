@@ -41,7 +41,9 @@ class: middle, center
 - MySQL
 
 ---
-# 婴儿起名分析
+class: middle, center
+
+# 例：名字流行度分析
 
 ???
 
@@ -116,11 +118,11 @@ class: middle, center
 ---
 # LIKE
 
-    SELECT * FROM baby WHERE Name LIKE '%Anny%';
+    SELECT * FROM baby WHERE Name LIKE 'a__%';
 
 指定字符串模式，两种可能的通配符：
-  - 下划线：任意一个字母
-  - 百分号：任意字符串，包括空字符串
+  - 下划线 _：任意一个字母
+  - 百分号 %：任意字符串，包括空字符串
   - 'a__%’：a 开头，后面有至少 2 个字母
 
 ---
@@ -254,17 +256,22 @@ class: middle, center
   - 没事。不常用
 
 ---
+class: middle, center
+
+# 课堂练习
+
+## 统计名字类型的流行度变化
+
+---
 # 统计名字类型的流行度变化
 
-分析：
+目标：
+- 构造一张表：类型，Count，Year
 
-需要构造一张表：类型，Count，Year
-
-先 Join 两张表，得到 Count，Year，Category
-
-Inner Join
-
-然后对 Category 和 Year 做 Count 的 Sum
+方法：
+- 先 Join 两张表，得到 Count，Year，Category
+  - Inner Join
+- 然后对 Category 和 Year 做 Count 的 Sum
 
 ---
 # 统计名字类型的流行度变化
@@ -387,14 +394,9 @@ class: middle, center
 ---
 class: middle, center
 
-# 补充技巧
-
-Jupyter SQL Magic
-
----
 # Jupyter SQL Magic
 
-在 Jupyter Notebook 中，你可以使用 SQL magic 来运行 SQL 查询。SQL magic 是一个 IPython 扩展，允许你在 Jupyter Notebook 中使用 SQL。
+在 Jupyter Notebook 中，直接使用 SQL
 
 ???
 
@@ -409,23 +411,26 @@ https://github.com/cliburn/bios-823-2021
 
 安装 ipython-sql 扩展和数据库驱动（例如 SQLite 驱动）。
 
-!pip install ipython-sql sqlalchemy
+! pip install ipython-sql sqlalchemy
 
 如果使用不同的数据库，安装相应的数据库驱动。例如 MySQL：
 
 pip install pymysql
 
 ---
+class: middle, center
 # 加载 SQL Magic
 
 %load_ext sql
 
 ---
+class: middle, center
 # 连接到 SQLite 数据库
 
 %sql sqlite:///example.db
 
 ---
+class: middle, center
 # SQL 操作
 
 在 Cell 的第一行输入：
@@ -439,16 +444,17 @@ pip install pymysql
 
 创建一个示例表并插入数据
 
-%%sql
-CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY,
-    name TEXT,
-    age INTEGER
-);
+      %%sql
+      CREATE TABLE IF NOT EXISTS users (
+          id INTEGER PRIMARY KEY,
+          name TEXT,
+          age INTEGER
+      );
 
-INSERT INTO users (name, age) VALUES ('Alice', 30), ('Bob', 25), ('Charlie', 35);
+      INSERT INTO users (name, age) VALUES
+         ('Alice', 30), ('Bob', 25), ('Charlie', 35);
 
-SELECT * FROM users;
+      SELECT * FROM users;
 
 非常方便
 
@@ -462,7 +468,7 @@ class: middle, center
 
 访问 https://github.com/DS-100/textbook/tree/master/content/ch/07 目录下的 Jupyter Notebook
 
-复习课上演示过的 Jupyter Notebook
+练习这些 Jupyter Notebook，复习课上学过的内容
 
 完成作业 sql_exercises.ipynb
 
@@ -470,17 +476,17 @@ class: middle, center
 
 # 扩展练习 1：BROWN 大学练习 I
 
-上传 2-SQL-Lab.zip，解压，打开 sql_stencil.ipynb
+上传 [2-SQL-Lab.zip](../zip/2-SQL-Lab.zip)，解压，打开 sql_stencil.ipynb
+
+完成下面的练习
 
 ---
 # 练习 I：sqlite3 基本操作
-
-打开数据库，查看其中的表，表的 Schema，表中的记录
-
-创建新表
+- 打开数据库，查看其中的表，表的 Schema，表中的记录
+- 创建新表
 
 ---
-# 练习 II，人际关系表
+# 练习 II，人际关系分析
 
 三个表
 - 职业信息
@@ -490,7 +496,7 @@ class: middle, center
   - 双向
 
 ---
-# 练习 II，基本操作和统计
+# 练习 II，人际关系分析
 
 - 名字排序
 - 职业筛选
@@ -508,7 +514,7 @@ class: middle, center
 - 插入、删除和更新记录
 
 ---
-# 练习 VI，高级查询
+# 练习 VI，高级查询练习
 
 - Having
 - Join
@@ -528,29 +534,24 @@ Brown 2021
 ---
 # 扩展练习 2：BROWN 大学作业 II
 
-布朗大学，SQL 练习，[网页](https://cs1951a-summer2021-brown.github.io/assignments/sql/sql.html)
+下载 [hw1-sql.zip](../zip/hw1-sql.zip)，完成下列练习
 
-包括
-- 人们关系分析
+- 人际关系分析
 - TMDB 电影数据集分析
 - 运动员数据查询优化
 
 ---
 
-# 扩展练习 3: Duke 大学 Sta663
+# 扩展练习 3: Duke 大学 BIOS 823
 
-https://github.com/cliburn/bios-823-2021/tree/main/notebooks
+访问 https://github.com/cliburn/bios-823-2021/tree/main/notebooks
+
+完成下面的练习
 
 ---
 # 练习 I: Overview
 
 A07_Relatinoal_Databases.ipynb
-
-Relational Databases Overview
-- Packages for working with relational databases in Python
-- Motivation
-- RDBMS
-- What is a database?
 - Concepts
 - Design
 - Database administration
@@ -608,28 +609,18 @@ ds100 lec20，note20，lab10，hw07，disc11
 [SQL Cheat Sheet](https://websitesetup.org/sql-cheat-sheet/)， Luke Harrison, a former Data 100 student.
 
 ---
+# 作业：职场练习
+
+- 你心仪职位的职责中，有没有需要做 SQL 相关工作的？请举一个例子
+- 针对上述例子，基于课后练习的代码和数据，构造示例数据，实现对应的 SQL，并测试通过。简述设计思路。
+- 按 STAR 原则，就上述工作写作 50 字的简历内容。简历内容需要言简意赅，很有吸引力。具体要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
+- 作业提交链接：[作业：用 SQL 处理关系](https://docs.qq.com/form/page/DT1JUUGp1R2ZnY29K)
+- 提示：请全程由 AI 辅助
+
+---
+class: middle, center
 
 # 参考材料：SQL Cheat Sheet
 
 浏览 Wu Dun 的 [SQL Cheat Sheet](https://dunwu.github.io/db-tutorial/pages/e438a7/#sum-%E8%BF%94%E5%9B%9E%E6%95%B0%E5%80%BC%E5%88%97%E7%9A%84%E6%80%BB%E5%92%8C)，对其中你感兴趣的语句，询问 AI，弄懂其用法。
 
----
-class: middle, center
-
-# 作业
-
----
-# 作业 I：职场练习
-
-- 你心仪职位的职责中，有没有需要做 SQL 相关工作的？请举一个例子
-- 针对上述例子，基于课后练习的代码和数据，构造示例数据，实现对应的 SQL，并测试通过。简述设计思路。
-- 按 STAR 原则，就上述工作写作 50 字的简历内容。
-
-简历内容需要言简意赅，很有吸引力。具体要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
-
----
-# 作业提交链接
-
-[【腾讯文档】作业 3：用 SQL 处理关系](https://docs.qq.com/form/page/DT1JUUGp1R2ZnY29K)
-
-提示：请全程由 AI 辅助

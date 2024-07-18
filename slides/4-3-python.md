@@ -21,6 +21,26 @@ class: middle, center
 ---
 # Jupyter Notebook 介绍
 
+两种 Cell
+- Code cell
+  - Python
+  - 如果是命令行的话，前面加感叹号 !
+- Markdown cell
+  - Markdown 语法，支持 Latex
+
+---
+# 运行 Jupyter Notebook
+
+- 用鼠标点击 Code Cell 左边的小三角运行
+- 选择 Python 环境
+  - 选“Recommended”（推荐的）就行
+- 如果出错，不要紧张，仔细看看提示
+  - 如果是：没有发现 xx Module，那么就是因为没有安装这个库
+- 两种安装库的方法
+  - 在 Terminal 里，pip install xx
+  - 在 Code Cell 里，! pip install xx
+- 安装成功后，再运行即可
+
 ---
 # Python 入门
 
@@ -63,13 +83,17 @@ class: middle, center
 class: middle, center
 # 课后练习
 
-请全程利用 AI
-
 ---
 
 # 课后练习 1: Duke 大学 Sta663
 
-https://github.com/cliburn/bios-823-2021/tree/main/notebooks
+访问 https://github.com/cliburn/bios-823-2021/tree/main/notebooks
+
+完成下面的练习
+
+很多有趣的 Python 功能，强烈推荐
+
+即使你很熟悉 Python 语言，也建议再练习练习
 
 ---
 # 练习 I：Python
@@ -83,13 +107,18 @@ A01_Python_Concepts
 
 A02_Numpy_Concepts
 
-Using numpy
 - NDArray
 - Indexing and slices
 - Matrix multiplication
 - Conditional replacement with where
 - Array creating functions
 - Reductions (margins)
+
+---
+# 练习 II: NumPy
+
+A02_Numpy_Concepts
+
 - Broadcasting
 - Universal functions (ufunc)
 - Einstein summation notation
@@ -99,18 +128,21 @@ Using numpy
 - Memory mapping
 
 ---
+class: middle, center
+
+# 作业
+
+---
 # 作业 I：职场练习
 
 - 你心仪职位的职责中，有没有需要用 Python 进行工作的地方？请举一个例子
 - 针对上述例子，基于课上和课后练习的代码和数据，构造示例数据，实现对应的程序，并测试通过。简述设计思路。
-- 按 STAR 原则，就上述工作写作 50 字的简历内容。
-
-简历内容需要言简意赅，很有吸引力。具体要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
+- 按 STAR 原则，就上述工作写作 50 字的简历内容。简历内容需要言简意赅，很有吸引力。具体要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
 
 ---
 # 作业提交链接
 
-[【腾讯文档】作业 4：Python 编程](https://docs.qq.com/form/page/DT1ZwTlpvY3BjQ1lE)
+[【腾讯文档】作业：Python 编程](https://docs.qq.com/form/page/DT1ZwTlpvY3BjQ1lE)
 
 ???
 

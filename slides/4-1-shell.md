@@ -7,8 +7,12 @@ class: middle, center
 
 - ls：列出目录下文件
 - cd：进入目录
+- pwd：显示当前目录
+- find: 迭代访问目录下所有目录和文件
+- grep: 搜索文件内容
 - cp：copy 复制
 - rm：remove 删除
+- unzip：解压 zip 文件
 
 ---
 # 语法
@@ -100,4 +104,4 @@ class: middle, center
 ---
 # 课后练习
 
-- 打开 [Linux 命令参考表](https://upload-images.jianshu.io/upload_images/1651860-3e2a26422af0ead1.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)，练习里面提到的命令，不理解之处，咨询 AI。感谢 [来源](https://www.jianshu.com/p/2c40cf0f9f9e)
+- 打开 [Linux 命令参考表](https://www.jianshu.com/p/2c40cf0f9f9e)，练习里面提到的命令，不理解之处，咨询 AI。

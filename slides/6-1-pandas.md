@@ -5,7 +5,7 @@ class: middle, center
 ---
 # 内容
 
-- 子集
+- 选择子集
 - 聚合
 - JOIN
 - 转换
@@ -28,7 +28,7 @@ class: middle, center
   - 第一行，是“爱丽丝”
 
 ---
-# Pandas
+# 对象与操作
 - 操作的两种对象
   - DataFrame
   - Series
@@ -47,7 +47,12 @@ class: middle, center
   - 比如：从 1 万行的表中，取 某一个线路的 行
 
 ---
-# 例：给孩子取名
+class: middle, center
+
+# 例：名字流行度分析
+
+---
+# 问题
 - 英国哈利王子给女儿取名：Lilibet，为什么？
 - 专家分析
   - L 开头的名字，最近流行
@@ -76,27 +81,30 @@ class: middle, center
   - 美国
 
 ---
-# 数据 偏差 分析
+# 数据偏差分析
 - 1879年以后才开始收集
 - 1937年后，很多人不去社保局登记
 - 一些没有登记出生地的人，不包括在数据里
 
 ---
 class: middle, center
-# 基本观察
-.center[.width-60[![](./fig/a1-baby-labels.svg)]]
 
-行标签：从0开始，往上累加
-
-“行标签”也可以是字符串
+# 选择
 
 ---
 class: middle, center
-# 狗狗的类型
-- .center[.width-80[![](./fig/a2-dog-labels.svg)]]
-  - 这个“行标签”，是“index”
-  - pandas 把它存在 pd.Index 里（索引）
-  - 它不是数据，不是一“列”
+# 行标签与列标签
+.center[.width-60[![](./fig/a1-baby-labels.svg)]]
+
+行标签：从0开始，往上累加，pandas 把它存在 pd.Index 里（索引）。不是数据，不是一“列”
+
+---
+class: middle, center
+# “行标签”也可以是字符串
+
+.center[.width-80[![](./fig/a2-dog-labels.svg)]]
+
+“行标签”：“index”
 
 ---
 # Slicing
@@ -105,18 +113,18 @@ class: middle, center
 - 就像切土豆片
   - 横切
   - 竖切
-- 用 .loc, .iloc
-  - .loc： 用 label 选择行或者列
+- .loc：
+  - 用标签选择行或者列
 
 ---
 # 切一个 Cell
 
       baby.loc[1, 'Name']
-  1 是 行 label
+  1 是 行标签
 
-  “Name” 是 列 label
+  “Name” 是列标签
 
-注意：用 方括号
+注意：用方括号
 
 ---
 # 切一大“块”
@@ -149,7 +157,7 @@ class: middle, center
       baby[['Name', 'Year']]
 
 ---
-# .iloc
+# .iloc 按位置编号切
 
 类似 loc，但输入的是 “位置” 的编号
 
@@ -161,10 +169,16 @@ class: middle, center
       dogs.loc['Labrador Retriever':'Beagle', 
             'grooming':'food_cost']
 
+
+---
+class: middle, center
+
+# 过滤
+
 ---
 # filtering
 - 选出符合要求的行和列
-- 比如：从 1万 行的表中，取 某一个线路的 行
+- 比如：取某一年的行
 - 检查是否满足筛选条件
   - 布尔表达式
 
@@ -184,7 +198,9 @@ class: middle, center
     baby[baby['Year'] == 2020]
 
 ---
-# sorting
+# 结果排序
+
+sorting
 
       (baby[baby['Year'] == 2020]
       .sort_values('Count', ascending=False)
@@ -192,13 +208,14 @@ class: middle, center
       )
 
 ---
-# 练习
+# 案例分析
 
 - 背景
   - Luna 这个女孩名字 2000 年以前还不存在，现在流行了
 - 问题
   - Luna 什么时候变流行的？
-
+- 思路
+  - 选出 Luna，按 Year 分析其 Count 
 ---
 # 设计
  
@@ -254,6 +271,11 @@ class: middle, center
 2011年 苹果公司用了这个名字。哈！
 
 ---
+class: middle, center
+
+# 聚合
+
+---
 # 合并（Aggregating）
 - 合并一些行，获得总结
   - 比如：每天一行，今天的销售量
@@ -266,9 +288,9 @@ class: middle, center
 
 ---
 class: middle, center
-# 讨论
+# 案例
 
-基于这个数据，能不能分析出生率随时间的变化？
+如何分析出生率随时间的变化？
 
 ---
 class: middle, center
@@ -290,23 +312,21 @@ sum 也是函数
 
       counts_by_year = baby.groupby('Year')['Count'].sum()
             .reset_index()
-reset index 把 Year 从 index 变成 列，方便画图
+reset index 把 Year 从 index 变成列，方便画图
 
 ---
 # 出生率随时间的变化
-- .center[.width-80[![](./fig/a6-pandas_aggregating_37_0.svg)]]
-  - 1939年下降，为什么？
-  - 1964年上升，为什么？
+.center[.width-80[![](./fig/a6-pandas_aggregating_37_0.svg)]]
+  - 1939年下降，1964年上升，为什么？
 
 ---
-# 统计出现的次数
-  
+# 统计一列中每种值出现的次数
       baby['Year'].value_counts()
 结果会排序，从高到低
 
 ---
-# 多列分组
-  
+# 按多列的内容聚合
+
 给 groupby 多个列的名字
 
       counts_by_year_and_sex = (baby
@@ -317,8 +337,8 @@ reset index 把 Year 从 index 变成 列，方便画图
 输出是 一个 “多级index”（两级 index）的 Series
 
 ---
-# 格式转换
-把它转为 dataframe
+# 转换
+把 Series 转为 Dataframe
 
       counts_by_year_and_sex.to_frame()
 结果是一列
@@ -356,22 +376,23 @@ reset index
       )
 
 ---
-# 讨论
+# 统计不同的值的个数
 
       def count_unique(s):
           return len(s.unique())
-会产生什么结果？
+
+比如：按年 Group，然后统计每一年中不同的 Name 数
 
 ---
 # 每年的不同的名字数
 
 .center[.width-80[![](./fig/a6-pandas_aggregating_37_0.svg)]]
- 
+
 越来越多
 
 ---
 # Pivoting
-按两列进行分组
+按两列进行分组，然后聚合
 
 很方便地进行按照两个属性的总结
 
@@ -398,12 +419,19 @@ reset index
   - pivot_table()
 
 ---
+class: middle, center
+
+# 多个表的联合
+
+---
 # Joining
 
 - 连接两个表
 - 名字表
     - baby_small
-      - 神话名字：Julius，  Cassius 正在流行
+      - name
+      - year
+      - count
 - 名字类型表
     - nyt_small
       - name
@@ -411,7 +439,7 @@ reset index
 
 ---
 # inner join
-- 从 baby 表的第一行往下，看 name ，如果 这个name 在名字类型表里有，就把 category 加上
+- 从 baby 表的第一行往下，看 name ，如果这个name 在名字类型表里有，就把 category 加上
 - 没有的话呢？
 
 - 第一种选择：就不管这个 name 了
@@ -428,7 +456,7 @@ reset index
       baby_small.merge(nyt_small,
                  left_on='Name',
                  right_on='nyt_name')
-  告诉它，用哪两列 join
+  left/right 告诉它，用哪两列 join
 
   注意，新表会有这两列：'Name'，'nyt_name'，虽然它们内容重复
 
@@ -440,7 +468,7 @@ reset index
 以左边的为主，右边没有的话，用 None 来填充
 
       baby_small.merge(nyt_small,
-                 left_on='Name',        
+                 left_on='Name',
                  right_on='nyt_name',
                  how='left')
 
@@ -468,14 +496,14 @@ outer join
 class: middle, center
 # 案例
 
-各种类型名字的人数随时间（年份）的变化
+各名字类型的人数随时间（年份）的变化
 
 ---
 # 分析
 - 先 join
   - inner？left？outer？
 - 然后 group
-  - 类型
+  - 名字类型
   - 时间（year）
 - 然后 合并
   - sum
@@ -493,7 +521,7 @@ class: middle, center
       )
 
 ---
-# 画图
+# 画两个 Category 的图
 
       boomers = px.line(cate_counts
                     .query('category == "boomer"'),
@@ -511,16 +539,14 @@ class: middle, center
       margin(fig, t=30)
 
 ---
-# 画图
-
-两张子图，并排
+# 两张子图，并排
 
 .center[.width-100[![](./fig/a10-pandas_joining_33_0.svg)]]
 
-神秘类型名字最近流行起来了
+Mythology 类型名字最近流行起来了
 
 ---
-# 按 category 画子图
+# 按 category 画全部子图
 
       fig = px.line(cate_counts, x='Year', y='Count',
               facet_col='category', 
@@ -534,14 +560,18 @@ class: middle, center
 facet_col='category' 指定按照 category 分组
 
 ---
-# 按 category 画子图
+# 按 category 画全部子图
 
 .center[.width-100[![](./fig/a11-pandas_joining_35_0.svg)]]
 
 ---
 # JOIN 小结
 - inner， left， right， outer join
-- 画 子图
+- 画子图
+
+---
+class: middle, center
+# 变换
 
 ---
 # 变换
@@ -550,17 +580,17 @@ facet_col='category' 指定按照 category 分组
 
 ---
 class: middle, center
-# 案例
+# 例
 
-如何分析首字母的流行度变化趋势
+名字的首字母的流行度随时间变化趋势
 
 ---
-# 算法
+# 分析
 - 提取 Name 列的首字母，加 “Name 首字母”的一列
 - 然后 group，sum
 
 ---
-# 方法
+# 实现：Apply 函数
 
 对 Series 用 apply 函数
 
@@ -581,21 +611,23 @@ class: middle, center
 ---
 # 两种赋值方法
 
-      letters = baby.assign(Firsts=names.apply(first_letter))
-创建新表格 letters，加新列 First
+第一种：创建新表格 letters，加新列 First；不改变 baby
 
-它不会改变 baby
+      letters = baby.assign(
+          Firsts=names.apply(first_letter))
+
+第二种：改变 baby，容易带来 bug，使用时注意
 
       baby['Firsts'] = names.apply(first_letter)
-它会改变 baby，容易带来 bug，使用时注意
 
 ---
 # 首字母流行度变化趋势
 
 然后 group， count
 
+画图
 
-.center[.width-90[![](./fig/a12-pandas_transforming_15_0.svg)]]
+.center[.width-70[![](./fig/a12-pandas_transforming_15_0.svg)]]
 
 ???
       fig = px.line(letter_counts.loc
@@ -616,7 +648,7 @@ class: middle, center
           return yr // 10 * 10
 
       baby['Year'].apply(decade)
-一些数值计算，可以做矩阵运算，更快
+数值计算，做矩阵运算，更快
 
       baby['Year'] // 10 * 10
 快30倍
@@ -651,7 +683,7 @@ class: middle, center
 # 课后练习
 
 ---
-# 基本练习：DS100 课本附属练习
+## 基本练习：DS100 课本附属练习
 
 访问 https://github.com/DS-100/textbook/tree/master/content/ch/06 目录下的 Jupyter Notebook
 
@@ -664,9 +696,9 @@ class: middle, center
 完成练习：pandas_exercises.ipynb
 
 ---
-# 扩展练习 I：Brown Pandas Numpy Lab
+## 扩展练习 I：Brown Pandas Numpy Lab
 
-布朗大学 ，[网页](https://cs1951a-summer2021-brown.github.io/assignments)
+布朗大学 ，下载 [1-Pandas-Numpy-Lab.zip](../zip/1-Pandas-Numpy-Lab.zip)，练习
 
 - Numpy
   - Array creation
@@ -679,7 +711,12 @@ class: middle, center
   - Matplotlib
 
 ---
-# 扩展练习 II：BIOS823 
+
+## 扩展练习 II: Duke 大学 BIOS 823
+
+访问 https://github.com/cliburn/bios-823-2021/tree/main/notebooks
+
+完成下面的练习
 
 A03 Data Processing
 - Introduction to pandas
@@ -687,12 +724,21 @@ A03 Data Processing
 - Creating Data Frames
 - Indexing Data Frames
 - Structure of a Data Frame
+
+---
+## 扩展练习 II：BIOS 823 
+
+A03 Data Processing
+
 - Selecting, Renaming and Removing Columns
 - Selecting, Renaming and Removing Rows
 - Transforming and Creating Columns
 - Sorting Data Frames
 - Summarizing
 - Split-Apply-Combine
+
+---
+## 扩展练习 II：BIOS 823 
 - Combining Data Frames
 - Fixing common DataFrame issues
 - Reshaping Data Frames
@@ -701,14 +747,13 @@ A03 Data Processing
 - Chaining commands
 - Moving between R and Python in Jupyter
 
----
-# 扩展练习 III：DS100 SP24 材料
+???
+
+扩展练习 III：DS100 SP24 材料
 
 - 讲座：Lec 2、3、4
 - Lab 2
 - HW 2A、2B
-
-???
 
 ds100 lec2-4
 
@@ -772,26 +817,16 @@ hw2b
 - [Python for Data Science](http://wavedatalab.github.io/datawithpython/index.html) Another set of notebook demonstrating Pandas functionality.
 
 ---
+# 作业：职场练习
+
+- 你心仪职位的职责中，有没有需要做 Pandas 相关工作的？请举一个例子
+- 针对上述例子，基于课后练习的代码和数据，构造示例数据，实现对应的代码，并测试通过。简述设计思路。
+- 按 STAR 原则，就上述工作写作 50 字的简历内容。简历要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
+- 作业提交链接：[【腾讯文档】作业：用 Pandas 处理关系](https://docs.qq.com/form/page/DT1RFdFRhWHdxVkRD)
+- 提示：请全程由 AI 辅助
+
+---
 # 参考材料
 
 - [Pandas Cheatsheet](https://github.com/pandas-dev/pandas/blob/main/doc/cheatsheet/Pandas_Cheat_Sheet.pdf)
 
----
-class: middle, center
-
-# 作业
-
----
-# 作业 I：职场练习
-
-- 用 Pandas 实现你在 SQL 部分职场练习中的工作
-- 按 STAR 原则，就上述工作写作 50 字的简历内容。
-
-简历内容需要言简意赅，很有吸引力。具体要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
-
----
-# 作业提交链接
-
-[【腾讯文档】作业 5：用 Pandas 处理关系](https://docs.qq.com/form/page/DT1RFdFRhWHdxVkRD)
-
-提示：请全程由 AI 辅助

@@ -14,10 +14,10 @@ class: middle, center
 ---
 # 为什么用数据库？
 - 可扩展
-- 可以处理更大规模的数据
-- 现代数据库管理系统 (DBMS) 可以处理数百 TB 数据（并且还在不断增长）存储的数十亿条记录
+  - 可以处理更大规模的数据
+  - 现代数据库管理系统 (DBMS) 可以处理数百 TB 数据（并且还在不断增长）存储的数十亿条记录
 - 数据分布在 DBMS管理的许多（100-1000）节点上
-- 有复杂的算法，管理存在硬盘上的数据
+  - 有复杂的算法，管理存在硬盘上的数据
 - Pandas 处理不过来
 
 ---
@@ -63,6 +63,10 @@ class: middle, center
   - 如：物品、存储设施、学生、课程
 - 概念的属性
   - 如：价格、颜色、姓名，年级
+
+---
+# 职责簿
+
 - 属性的类型和范围
   - 如：字母、整数、日期
 - 如何识别/引用对象？
@@ -112,8 +116,6 @@ https://static.us.edusercontent.com/files/KY0L3oeXWDyehguFptxYuOsM
   - 不能为空
   - 取值唯一
 
----
-# Schema
 
     CREATE TABLE company
       (id INT PRIMARY KEY NOT NULL,
@@ -121,18 +123,22 @@ https://static.us.edusercontent.com/files/KY0L3oeXWDyehguFptxYuOsM
 
 ---
 # 数据类型
-- 数字：INT、FLOAT、REAL、DOUBLE
-- 字符串：CHAR(n)、VARCHAR(n)、CLOB(大小)
+- 数字
+  - INT、FLOAT、REAL、DOUBLE
+- 字符串：
+  - CHAR(n)、VARCHAR(n)、CLOB(大小)
     - CHAR：字段长度是固定。无论存储字符串长度多少，CHAR(10) 都会占用 10 个字符的空间，剩余空间用空格填充，适用于存储长度固定的数据，例如国家代码、邮政编码等
     - VARCHAR：长度不固定
     - CLOB(2MB)：用于大型对象，例如文档/网页
 
 ---
 # 数据类型
-- 位串：BIT(n)、BIT VARYING(n)、BLOB
+- 位串
+  - BIT(n)、BIT VARYING(n)、BLOB
     - BLOB(20MB) 例如图像
 - 布尔值
-- 日期：DATE, TIME, TIMESTAMP, TIME WITH TIME ZONE
+- 日期
+  - DATE, TIME, TIMESTAMP, TIME WITH TIME ZONE
 - 正确选择数据类型可以提高性能和内存利用率
 
 ---
@@ -161,16 +167,9 @@ class: middle, center
 
 - 你心仪的职位接触的数据量多大？需不需要数据库？为什么？
 - 你心仪的职位可能接触到什么数据库？请给出该数据库的设计方案，包括需求工程、实体关系模型和逻辑/物理建模
-- 基于上述内容，按 STAR 原则，写作 50 字的简历内容。
-
-简历内容需要言简意赅，很有吸引力。具体要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
-
----
-# 作业提交链接
-
-[【腾讯文档】作业 2：数据库设计](https://docs.qq.com/form/page/DT2R0alJ1V0NUaFlF)
-
-提示：请全程由 AI 辅助
+- 基于上述内容，按 STAR 原则，写作 50 字的简历内容。简历内容需要言简意赅，很有吸引力。具体要求请参见《AI 帮工作 1：求职和申请》教程的 7-11 页，[链接](https://yishuai.github.io/talk/ai-career/index.html?p=4-1-apply.md#7)
+- 作业提交链接：[【腾讯文档】作业：数据库设计](https://docs.qq.com/form/page/DT2R0alJ1V0NUaFlF)
+- 提示：请全程由 AI 辅助
 
 ???
 
