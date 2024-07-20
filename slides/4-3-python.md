@@ -14,7 +14,7 @@ class: middle, center
 
 打开 https://www.marscode.cn/dashboard
 
-下载 https://raw.githubusercontent.com/cs231n/cs231n.github.io/master/jupyter-notebook-tutorial.ipynb
+下载 [jupyter-notebook-tutorial.ipynb](../zip/jupyter-notebook-tutorial.ipynb)
 
 上传后，运行
 
