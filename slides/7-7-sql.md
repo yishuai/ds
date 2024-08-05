@@ -624,3 +624,10 @@ class: middle, center
 
 浏览 Wu Dun 的 [SQL Cheat Sheet](https://dunwu.github.io/db-tutorial/pages/e438a7/#sum-%E8%BF%94%E5%9B%9E%E6%95%B0%E5%80%BC%E5%88%97%E7%9A%84%E6%80%BB%E5%92%8C)，对其中你感兴趣的语句，询问 AI，弄懂其用法。
 
+
+---
+# 练习
+
+[Kaggle 在线 SQL 教程](https://www.kaggle.com/learn)
+
+.center[.width-100[![](./kaggle.png)]]

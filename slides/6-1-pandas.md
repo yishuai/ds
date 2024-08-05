@@ -830,3 +830,9 @@ hw2b
 
 - [Pandas Cheatsheet](https://github.com/pandas-dev/pandas/blob/main/doc/cheatsheet/Pandas_Cheat_Sheet.pdf)
 
+---
+# 练习
+
+[Kaggle 在线 Pandas 教程](https://www.kaggle.com/learn)
+
+.center[.width-100[![](./kaggle.png)]]

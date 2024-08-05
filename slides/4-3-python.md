@@ -199,3 +199,10 @@ A more detailed discussion from a bio/data angle: ~45 minute video.
 
 Full ~3h in-depth tutorial is available from the core team.
     https://www.youtube.com/watch?v=RFabWieskak
+
+---
+# 练习
+
+[Kaggle 在线 Python 教程](https://www.kaggle.com/learn)
+
+.center[.width-100[![](./kaggle.png)]]
